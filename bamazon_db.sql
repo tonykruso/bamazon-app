@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS bamazon;
+CREATE DATABASE IF NOT EXISTS bamazon_db;
 
 CREATE TABLE IF NOT EXISTS products(
-	item_id INT (10) NOT NULL,
+	item_id INT (50) AUTO_INCREMENT NOT NULL,
     product_name VARCHAR (100) NOT NULL,
     department_name VARCHAR (100) NOT NULL,
     price DECIMAL (10, 2) NOT NULL,
@@ -22,8 +22,8 @@ VALUES (101, "barbie", "toys", 9.99, 50),
        (302, "basketball", "sporting goods", 16.99, 10),
        (303, "baseball glove", "sporting goods", 44.79, 10),
        (401, "PS4", "electronics", 399.99, 2),
-       (402, "VR headset", "electonics", 88.99, 10),
+       (402, "VR headset", "electronics", 88.99, 10),
        (403, "HDMI cord", "electronics", 4.00, 50),
        (501, "tent", "outdoors", 39.99, 10),
        (502, "fishing pole", "outdoors", 55.00, 50),
-       (503, "firepit", "outdoords", 99.99, 10)
+       (503, "firepit", "outdoors", 99.99, 10)
