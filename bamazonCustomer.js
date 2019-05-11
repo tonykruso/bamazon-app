@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "pickles68",
-    database: "bamazon_db"
+    database: "bamazondb"
 });
 
 connection.connect(function(err){
@@ -54,17 +54,20 @@ function purchasePrompt(){
 ]).then(function(answers){
     var quantityNeeded = answers.Quantity;
     var IDrequested = answers.ID;
+    // console.log("=-=====================");
+    // console.log(answers);
+    // console.log("IDrequested: " + Id);
     purchaseOrder(IDrequested, quantityNeeded);
 });
 };
 
 function purchaseOrder(Id, amountNeeded){
-    connection.query("SELECT * FROM products WHERE item_id = " + Id, function(err, res){
+    connection.query("SELECT * FROM products WHERE item_id = '" + Id + "'", function(err, res){
         if(err){console.log(err)};
         if(amountNeeded <= res[0].stock_quantity){
             var totalCost = res[0].price * amountNeeded;
             console.log("your total cost for " + amountNeeded + " " + res[0].product_name + " is " + totalCost);
-            connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amountNeeded + "WHERE item_id = " + Id);
+            connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amountNeeded + " WHERE item_id = '" + Id + "'");
             }
             else{
                 console.log("insufficient quantity! we do not have enough " + res[0].product_name + " to fulfill your order.");
